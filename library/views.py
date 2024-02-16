@@ -1,12 +1,14 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from . import forms,models
-from django.http import HttpResponseRedirect
-from django.contrib.auth.models import Group
+from datetime import date, datetime, timedelta
+
 from django.contrib import auth
-from django.contrib.auth.decorators import login_required,user_passes_test
-from datetime import datetime,timedelta,date
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import Group
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+from . import forms, models
+
 #from librarymanagement.settings import EMAIL_HOST_USER
 
 
@@ -196,6 +198,6 @@ def contactus_view(request):
             email = sub.cleaned_data['Email']
             name=sub.cleaned_data['Name']
             message = sub.cleaned_data['Message']
-            send_mail(str(name)+' || '+str(email),message, EMAIL_HOST_USER, ['wapka1503@gmail.com'], fail_silently = False)
+            send_mail(str(name)+' || '+str(email),message, EMAIL_HOST_USER, ['makiracamilla@gmail.com'], fail_silently = False)
             return render(request, 'library/contactussuccess.html')
     return render(request, 'library/contactus.html', {'form':sub})
